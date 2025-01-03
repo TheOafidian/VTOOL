@@ -116,9 +116,9 @@ server <- function(input, output, session){
                                                 samples=input$my_data_samples$datapath,
                                                 taxa=input$my_data_taxa$datapath,
                                                 counts=input$my_data_abundance$datapath)
-          
+
           incProgress(.7, message = "combining all files ...")
-          
+
           my_vdata <- my_vdata %>%
             tidytacos::add_mean_rel_abundance() %>%
             tidytacos::add_prevalence() %>%
@@ -509,9 +509,10 @@ server <- function(input, output, session){
     #count_total <- sum(my_counts$n)
     #my_counts %>%
     #  dplyr::mutate(taxa_perc = round((n/count_total)*100, 1))
+
     no_dominance_ix <- which(my_counts$dominant_taxa == "No dominance")
     my_levels <- c(my_counts$dominant_taxa[-no_dominance_ix], "No dominance")
-    my_colors_ix <- which(seq(length(my_levels)) != no_dominance_ix & my_counts$taxa_perc > 1)
+    my_colors_ix <- which(seq(length(my_levels)) != no_dominance_ix & (my_counts$taxa_perc > 1 & my_counts$n > 1))
     my_colors <- rep(my_color_palette[11], length(my_levels))
 
     my_colors[no_dominance_ix] <- my_color_palette[10]
@@ -796,7 +797,7 @@ server <- function(input, output, session){
 
     dominant_taxa_counts <- dominant_taxa_counts %>%
       dplyr::mutate(dominant_taxa_grouped = replace(as.character(dominant_taxa),
-                                                    (dominant_taxa!="No dominance" & taxa_perc<=1),
+                                                    (dominant_taxa!="No dominance" & (taxa_perc<=1 | n==1)),
                                                     "Other")) %>%
       dplyr::group_by(dominant_taxa_grouped) %>%
       dplyr::summarise(n=sum(n)) %>%
@@ -805,9 +806,14 @@ server <- function(input, output, session){
     no_dominance_ix <- which(dominant_taxa_counts$dominant_taxa_grouped == "No dominance")
     other_ix <- which(dominant_taxa_counts$dominant_taxa_grouped == "Other")
 
-    my_levels <- c(dominant_taxa_counts$dominant_taxa_grouped[-c(no_dominance_ix,other_ix)], "Other","No dominance")
-
-    my_colors_ix <- which((seq(length(my_levels)) != no_dominance_ix & seq(length(my_levels)) != other_ix))
+    # Check if "Other" present before defining levels and colors per level
+    if(length(other_ix != 0)){
+      my_levels <- c(dominant_taxa_counts$dominant_taxa_grouped[-c(no_dominance_ix,other_ix)], "Other","No dominance")
+      my_colors_ix <- which((seq(length(my_levels)) != no_dominance_ix & seq(length(my_levels)) != other_ix))
+    }else{
+      my_levels <- c(dominant_taxa_counts$dominant_taxa_grouped[-c(no_dominance_ix)],"No dominance")
+      my_colors_ix <- which(seq(length(my_levels)) != no_dominance_ix)
+    }
 
     my_colors <- rep(my_color_palette[11], length(my_levels))
     my_colors[no_dominance_ix] <- my_color_palette[10]
