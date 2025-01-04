@@ -98,14 +98,19 @@
     },
     "Rcpp": {
       "Package": "Rcpp",
-      "Version": "1.0.13",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Version": "1.0.13.6",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "Rcpp",
+      "RemoteUsername": "RcppCore",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "52839b0af41297a9e9e8fefa5252d722c7d62aca",
       "Requirements": [
         "methods",
         "utils"
       ],
-      "Hash": "f27411eb6d9c3dada5edd444b8416675"
+      "Hash": "50f37b6652a5eed0ec37eacf215ec1fa"
     },
     "TSP": {
       "Package": "TSP",
