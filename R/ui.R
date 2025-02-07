@@ -1,10 +1,16 @@
+i18n <- shiny.i18n::Translator$new(translation_json_path = "inst/app/translation.json")
+i18n$set_translation_language("es")
+
 #' The Application User-Interface
 #'
 #' @param request Internal parameter for `{shiny}`.
 #'
-#' @import shiny magrittr
+#' @import shiny magrittr shiny.i18n
+#' @importFrom shiny.i18n t
 #' @noRd
 ui <- function(request){
+   shiny.i18n::usei18n(i18n)
+
   #shiny::addResourcePath('www', fs::path_package("app/www", package='VTOOL'))
   # Value boxes
   my_data_value_boxes <- list(
@@ -101,10 +107,11 @@ ui <- function(request){
       )),
     # The tabs inside the navigation bar
     ####################################
+
     # First tab
     #----------
     bslib::nav_panel(
-      title = "Inicio",
+      title = i18n$t("Inicio"),
       value = "start",
       # The card with content
       bslib::card_body(fillable = FALSE,
@@ -117,7 +124,7 @@ ui <- function(request){
                                     style="margin-left:0px;padding-left:0px"),
                            tags$h3(class = 'jumbotron-heading',
                                    stye = 'margin-bottom:0px;margin-top:0px',
-                                   'Un explorador de datos para estudiar el microbioma vaginal'),
+                                   i18n$t('Un explorador de datos para estudiar el microbioma vaginal')),
                            #p(lorem::ipsum(paragraphs = 2, sentences = 5))
                            br(),
                            p("VTOOL es una herramienta basada en Shiny para el análisis
@@ -535,6 +542,20 @@ ui <- function(request){
           )
         )
       )
+    ),
+    # LANG
+    # LANG TAB
+    bslib::nav_spacer(),
+    bslib::nav_item(
+          align="right",
+          shinyWidgets::pickerInput("selected_language",
+            i18n$t("Cambiar idioma"),
+            choices = i18n$get_languages(),
+            selected = i18n$get_key_translation(),
+            multiple = FALSE,
+            options = list(container = "nav")
+            #TODO: figure out how to make this select act normal
+            )
     )
   )
 }

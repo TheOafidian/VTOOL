@@ -1,0 +1,18 @@
+{
+  "languages" : ["es", "en", "nl"],
+  "translation" : [
+    { "en": "Start",
+      "es": "Inicio",
+      "nl": "Begin"
+    }, 
+    { "en": "Change language",
+      "es": "Cambiar idioma",
+      "nl": "Verander taal"
+    },
+    {
+    "es": "Un explorador de datos para estudiar el microbioma vaginal",
+    "en": "A tool to explore data to study the vaginal microbiome",
+    "nl": "Een dataverkenner om het vaginale microbioom te bestuderen"
+    }
+  ]
+}
