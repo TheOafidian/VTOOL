@@ -1,10 +1,11 @@
-translator <- Translator$new(translation_json_path = "inst/app/translation.json")
+i18n <- shiny.i18n::Translator$new(translation_json_path = "inst/app/translation.json")
+i18n$set_translation_language("es")
 
 server <- function(input, output, session){
 
   observeEvent(input$selected_language, {
-      cat("Lang updated to:", input$selected_language, "\n")
-      shiny.i18n::update_lang(input$selected_language)
+      shiny.i18n::update_lang(input$selected_language, session = session)
+      #cat("Lang updated to:", input$selected_language, "\n")
   })
 
   my_color_palette <- c("#00719A","#FCD0BE","#413647","#FF9A73","#063547",

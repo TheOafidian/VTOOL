@@ -13,6 +13,71 @@
     "es": "Un explorador de datos para estudiar el microbioma vaginal",
     "en": "A tool to explore data to study the vaginal microbiome",
     "nl": "Een dataverkenner om het vaginale microbioom te bestuderen"
+    },
+    {
+      "es" : "Filtrar muestras",
+      "en" : "Filter samples",
+      "nl" : "Filter stalen" 
+    },
+    {
+      "es": "Nr. de Muestras",
+      "en" : "Amount of samples",
+      "nl": "Aantal stalen"
+    },
+    {
+      "es" : "Nr. de Taxones",
+      "en" : "Amount of taxa",
+      "nl" : "Aantal taxa"
+    },
+    {
+      "es" : "Lecturas Totales",
+      "en" : "Total reads",
+      "nl" : "Totaal aantal sequenties"
+    },
+    {
+      "es" : "Datos",
+      "en" : "Data",
+      "nl" : "Data"
+    },
+    {
+      "es" : "Muestras y metadata",
+      "en" : "Samples and metadata",
+      "nl" : "Stalen en metadata"
+    },
+    {
+      "es" : "Taxones y metadata",
+      "en" : "Taxa and metadata",
+      "nl" : "Taxa en metadata"
+    },
+    {
+      "es" : "Abundancias",
+      "en" : "Abundancy",
+      "nl" : "Abundantie"
+    },
+    {
+      "es" : "Composición",
+      "en" : "Composition",
+      "nl" : "Compositie"
+    },
+    {
+      "es" : "Taxón dominante",
+      "en" : "Dominant taxa",
+      "nl" : "Dominante taxa"
+    },
+    {
+      "es" : "Filtrar Datos",
+      "en" : "Filter Data",
+      "nl" : "Data Filteren"
+    },
+    {
+      "es" : "Filtrar",
+      "en": "Filter", 
+      "nl" : "Filteren"
+    },
+    {
+      "es" : "Remover filtros",
+      "en" : "Remove filters",
+      "nl" : "Verwijder filters"
     }
   ]
 }

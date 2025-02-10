@@ -9,13 +9,12 @@ i18n$set_translation_language("es")
 #' @importFrom shiny.i18n t
 #' @noRd
 ui <- function(request){
-   shiny.i18n::usei18n(i18n)
-
-  #shiny::addResourcePath('www', fs::path_package("app/www", package='VTOOL'))
+  
   # Value boxes
   my_data_value_boxes <- list(
     bslib::value_box(
-      title = "Nr. de Muestras",
+      shiny.i18n::usei18n(i18n),
+      title = i18n$t("Nr. de Muestras"),
       value = textOutput("total_sample"),
       showcase = icon("vial")#,
       #p("Some text"),
@@ -24,14 +23,16 @@ ui <- function(request){
       #theme = "success"
     ),
     bslib::value_box(
-      title = "Nr. de Taxones",
+      shiny.i18n::usei18n(i18n),
+      title = i18n$t("Nr. de Taxones"),
       value = textOutput("total_taxa"),
       showcase = icon("bacteria")#,
       #p("Some text"),
       #p("More text ...")
     ),
     bslib::value_box(
-      title = "Lecturas Totales",
+      shiny.i18n::usei18n(i18n),
+      title = i18n$t("Lecturas Totales"),
       value = textOutput("total_reads"),
       showcase = icon("dna")#,
       #p("Some text"),
@@ -47,14 +48,15 @@ ui <- function(request){
     theme = bslib::bs_theme(version = 5, preset = "yeti", primary = "#00719a"),
     # The Main sidebar
     sidebar = bslib::sidebar(
+      shiny.i18n::usei18n(i18n),
       id = "my_sidebar",
-      title = span(bsicons::bs_icon("funnel"), "Filtrar Datos", class = "sidebar-title"),
+      title = span(bsicons::bs_icon("funnel"), i18n$t("Filtrar Datos"), class = "sidebar-title"),
       open = FALSE,
       bg = "white",
       bslib::accordion(
         open = FALSE,
         bslib::accordion_panel(
-          title ="Filtrar muestras",
+          title = "Filtrar muestras",
           icon = icon("vial"),
           sliderInput(
             "sample_total_count",
@@ -99,11 +101,11 @@ ui <- function(request){
       ),
       actionButton(
         "input_apply_filter",
-        label = "Filtrar"
+        label = i18n$t("Filtrar")
       ),
       actionButton(
         "input_clean_filter",
-        label = "Remover filtros"
+        label = i18n$t("Remover filtros")
       )),
     # The tabs inside the navigation bar
     ####################################
@@ -111,6 +113,7 @@ ui <- function(request){
     # First tab
     #----------
     bslib::nav_panel(
+      #shiny.i18n::usei18n(i18n),
       title = i18n$t("Inicio"),
       value = "start",
       # The card with content
@@ -186,7 +189,7 @@ ui <- function(request){
                 ))
     ),
     bslib::nav_panel(
-      title = "Datos",
+      title = i18n$t("Datos"),
       value = "my_data",
       # the card with content
       bslib::layout_column_wrap(
@@ -200,7 +203,7 @@ ui <- function(request){
         id="my_data_tabs",
         # Muestras y metadata
         bslib::nav_panel(
-          title = "Muestras y metadata",
+          title = i18n$t("Muestras y metadata"),
           bslib::navset_underline(id="my_samples_navbar",
                            bslib::nav_panel("Explorar Tabla",
                                      bslib::card(
@@ -255,7 +258,7 @@ ui <- function(request){
                            bslib::nav_spacer())
         ),
         bslib::nav_panel(
-          title = "Taxones y metadata",
+          title = i18n$t("Taxones y metadata"),
           bslib::card(
             full_screen = TRUE,
             bslib::layout_sidebar(
@@ -277,7 +280,7 @@ ui <- function(request){
             ))
         ),
         bslib::nav_panel(
-          title = "Abundancias",
+          title = i18n$t("Abundancias"),
           bslib::card(
             full_screen = TRUE,
             bslib::layout_sidebar(
@@ -296,14 +299,15 @@ ui <- function(request){
     # 3rd tab
     #----------
     bslib::nav_panel(
-      title = "Composición",
+      title = i18n$t("Composición"),
       value = "my_community",
       bslib::navset_pill(
         id="my_community_tabs",
         # Dominant taxa
         #--------------
         bslib::nav_panel(
-          title = "Taxón dominante",
+          #shiny.i18n::usei18n(i18n),
+          title = i18n$t("Taxón dominante"),
           bslib::layout_sidebar(
             border = FALSE,
             sidebar = bslib::sidebar(id="my_dominant_taxa_sidebar",
@@ -547,6 +551,7 @@ ui <- function(request){
     # LANG TAB
     bslib::nav_spacer(),
     bslib::nav_item(
+          #shiny.i18n::usei18n(i18n),
           align="right",
           shinyWidgets::pickerInput("selected_language",
             i18n$t("Cambiar idioma"),
