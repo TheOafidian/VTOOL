@@ -60,7 +60,7 @@ ui <- function(request){
           icon = icon("vial"),
           sliderInput(
             "sample_total_count",
-            label = "Lecturas totales mínimo",
+            label = i18n$t("Lecturas totales mínimo"),
             min = 1,
             max = 10000,
             value = 1
@@ -74,7 +74,7 @@ ui <- function(request){
                                         placeholder = "Enter Sample_ID"))
         ),
         bslib::accordion_panel(
-          title = "Filtrar taxones",
+          title = "Filtrar taxones", # can't wrap this in i18n$t()...
           icon = icon("bacteria"),
           sliderInput(
             inputId = "taxa_mean_ra",
@@ -130,47 +130,38 @@ ui <- function(request){
                                    i18n$t('Un explorador de datos para estudiar el microbioma vaginal')),
                            #p(lorem::ipsum(paragraphs = 2, sentences = 5))
                            br(),
-                           p("VTOOL es una herramienta basada en Shiny para el análisis
-                         exploratorio de datos. A través de una interface
-                           interactiva e intuitiva, esta herramienta busca facilitar
-                           la exploración y visualización de datos asociados al estudio
-                           del microbioma vaginal."),
+                           p(i18n$t("VTOOL es una herramienta basada en Shiny para el análisis exploratorio de datos. A través de una interface interactiva e intuitiva, esta herramienta busca facilitar la exploración y visualización de datos asociados al estudio del microbioma vaginal.")),
                            br(),
-                           p("VTOOL es un proyecto de código abierto (open source),
-                           desarrollado en colaboración con investigadores y bioninformáticos,
-                           quienes buscan fomentar el estudio del microbioma vaginal.
-                           Si te interesa contribuir, reportar errores, o saber más de
-                           este proyecto, por favor",
-                             tags$a(href="https://github.com/mticlla/vtool", "visita nuestro
-                           repositorio en GitHub"), ".", .noWS = "outside")
+                           p(i18n$t("VTOOL es un proyecto de código abierto (open source), esarrollado en colaboración con investigadores y bioninformáticos, quienes buscan fomentar el estudio del microbioma vaginal. Si te interesa contribuir, reportar errores, o saber más de este proyecto, por favor"),
+                             tags$a(href="https://github.com/mticlla/vtool", i18n$t("visita nuestro repositorio en GitHub")), ".", .noWS = "outside")
                   ),
                   # Second element
                   bslib::card_body(
                     fillable = FALSE,
                     fill = FALSE,
                     tags$h3(class = 'jumbotron-heading', 'Empezemos cargando tus datos'),
-                    p("1. Selecciona el formato del archivo:"),
+                    p(i18n$t("1. Selecciona el formato del archivo:")),
                     shinyWidgets::awesomeRadio(
                       "input_format",
                       label = "Formato:",
                       choices = c("Tidytacos", "Biom"),
                       selected = "Tidytacos", inline = T),
                     # tags$br(),
-                    p("2. Encuentra tu(s) archivos:"),
+                    p(i18n$t("2. Encuentra tu(s) archivos:")),
                     uiOutput("load_file_options"),
                     tags$br(),
                     actionButton(
                       "input_my_data",
-                      label = "Importar datos",
+                      label = i18n$t("Importar datos"),
                       width = "100%",
                       disabled = FALSE
                     ) %>% bslib::tooltip("¡No olvides cargar tus archivos antes de presionar este botón!"),
                     tags$br(),
                     tags$br(),
-                    tags$h3(class = 'jumbotron-heading', 'O carga un dataset ejemplo'),
+                    tags$h3(class = 'jumbotron-heading', i18n$t('O carga un dataset ejemplo')),
                     actionButton(
                       "input_example",
-                      label = "Cargar ejemplo",
+                      label = i18n$t("Cargar ejemplo"),
                       width = "100%"
                     ),
                     tags$br(), tags$br()
@@ -205,7 +196,7 @@ ui <- function(request){
         bslib::nav_panel(
           title = i18n$t("Muestras y metadata"),
           bslib::navset_underline(id="my_samples_navbar",
-                           bslib::nav_panel("Explorar Tabla",
+                           bslib::nav_panel(i18n$t("Explorar Tabla"),
                                      bslib::card(
                                        class="table-responsive",
                                        full_screen = TRUE,
@@ -214,7 +205,7 @@ ui <- function(request){
                                                            position = "right",
                                                            width = 400,
                                                            open = FALSE,
-                                                           tags$span(strong("Variable seleccionada: "),
+                                                           tags$span(strong(i18n$t("Variable seleccionada: ")),
                                                                      textOutput("my_col_name")),
                                                            #textOutput("my_col_name"),
                                                            uiOutput("my_sample_col_plot_options"),
@@ -224,31 +215,21 @@ ui <- function(request){
                                                                               caption = "Cargando gráfico"))
 
                                          ),
-                                         p("Esta vista te permite explorar las muestras y su metadata."),
+                                         p(i18n$t("Esta vista te permite explorar las muestras y su metadata.")),
                                          DT::dataTableOutput(outputId = "my_samples", width = "100%") %>%
                                            shinycssloaders::withSpinner(color="#00719a", caption = "Cargando tabla")
                                        ))
                            ),
-                           bslib::nav_panel("Data Faltante", value = "my_samples_na_tab",
+                           bslib::nav_panel(i18n$t("Data Faltante"), value = "my_samples_na_tab",
                                      bslib::card(
                                        full_screen = TRUE,
                                        #card_header("Data Faltante"),
                                        tags$span(class = "text-left",
-                                                 p("Esta vista permite explorar patrones
-                                             de valores faltantes (NA) en la tabla de
-                                             muestras. El gráfico que mostramos es
-                                             una representación gráfica de la tabla,
-                                             donde las celdas que contienen valores son
-                                             de color ",
-                                                   span("gris claro", style="color:#333333;"),
-                                                   " y las celdas con valores faltantes son
-                                             de color",
-                                                   span("gris oscuro", style="color:#cccccc;"),"."),
-                                                 p("Además, el orden de las filas y las columnas
-                                             ha sido re-organizado de tal modo que muestras
-                                             con valores faltantes en las mismas columnas son
-                                             agrupadas. De igual manera, columnas con valores
-                                             faltantes en las mismas muestras son agrupadas.")
+                                                 p(i18n$t("Esta vista permite explorar patrones de valores faltantes (NA) en la tabla de muestras. El gráfico que mostramos es una representación gráfica de la tabla, donde las celdas que contienen valores son de color"),
+                                                   span(i18n$t("gris claro"), style="color:#333333;"),
+                                                   i18n$t("y las celdas con valores faltantes son de color"), " ",
+                                                   span(i18n$t("gris oscuro"), style="color:#cccccc;"),"."),
+                                                 p(i18n$t("Además, el orden de las filas y las columnas ha sido re-organizado de tal modo que muestras con valores faltantes en las mismas columnas son agrupadas. De igual manera, columnas con valores faltantes en las mismas muestras son agrupadas."))
                                        ),
                                        plotly::plotlyOutput("my_samples_nas") %>%
                                          shinycssloaders::withSpinner(color="#00719a",
@@ -266,7 +247,7 @@ ui <- function(request){
                                 position = "right",
                                 width = 400,
                                 open = FALSE,
-                                tags$span(strong("Variable seleccionada: "),
+                                tags$span(strong(i18n$t("Variable seleccionada: ")),
                                           textOutput("my_taxa_col_name")),
                                 #textOutput("my_taxa_col_name"),
                                 uiOutput("my_taxa_col_plot_options"),
@@ -274,7 +255,7 @@ ui <- function(request){
                                   shinycssloaders::withSpinner(color="#00719a",
                                               caption = "Cargando gráfico")
               ),
-              p("Esta vista te permite explorar las taxa y su metadata."),
+              p(i18n$t("Esta vista te permite explorar las taxa y su metadata.")),
               DT::DTOutput(outputId = "my_taxa", width = "100%") %>%
                 shinycssloaders::withSpinner(color="#00719a", caption = "Cargando tabla")
             ))
@@ -288,7 +269,7 @@ ui <- function(request){
                                 position = "right",
                                 width = 400,
                                 open = FALSE),
-              p("Esta vista te permite explorar la abundancia de cada taxón en cada muestra."),
+              p(i18n$t("Esta vista te permite explorar la abundancia de cada taxón en cada muestra.")),
               DT::DTOutput(outputId = "my_counts", width = "100%") %>%
                 shinycssloaders::withSpinner(color="#00719a", caption = "Cargando tabla")
             )
