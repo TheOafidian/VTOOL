@@ -1,7 +1,7 @@
 {
     "languages": [
-        "en",
         "es",
+        "en",
         "nl"
     ],
     "translation": [
@@ -11,9 +11,9 @@
             "nl": "Selecteer het formaat van de input"
         },
         {
-            "en": "TODO",
+            "en": "2. Search for your file(s):",
             "es": "2. Encuentra tu(s) archivos:",
-            "nl": "TODO"
+            "nl": "2. Zoek je bestand(en):"
         },
         {
             "en": "Abundancy",
@@ -151,34 +151,34 @@
             "nl": "Verken de tabel"
         },
         {
-            "en": "TODO",
+            "en": "Missing values",
             "es": "Data Faltante",
-            "nl": "TODO"
+            "nl": "Ontbrekende gegevens"
         },
         {
-            "en": "TODO",
+            "en": "Here you can view the samples and their metadata",
             "es": "Esta vista te permite explorar las muestras y su metadata.",
-            "nl": "TODO"
+            "nl": "Hier kan je de stalen en metadata bekijken"
         },
         {
-            "en": "TODO",
+            "en": "This view allows you to explore patterns of missing values (NA) in the sample table. The graph shown is a graphical representation of the table, where cells containing values are light gray and cells with missing values are dark gray.",
             "es": "Esta vista permite explorar patrones de valores faltantes (NA) en la tabla de muestras. El gráfico que mostramos es una representación gráfica de la tabla, donde las celdas que contienen valores son de color gris claro y las celdas con valores faltantes son de color gris oscuro .\n",
-            "nl": "TODO"
+            "nl": "Met deze weergave kun je patronen van ontbrekende waarden (NA) in de voorbeeldtabel onderzoeken. De weergegeven grafiek is een grafische weergave van de tabel, waarbij cellen met waarden lichtgrijs zijn en cellen met ontbrekende waarden donkergrijs."
         },
         {
-            "en": "TODO",
+            "en": "In addition, the order of the rows and columns has been rearranged so that samples with missing values in the same columns are grouped together. Similarly, columns with missing values in the same samples are grouped together.",
             "es": "Además, el orden de las filas y las columnas ha sido re-organizado de tal modo que muestras con valores faltantes en las mismas columnas son agrupadas. De igual manera, columnas con valores faltantes en las mismas muestras son agrupadas.",
-            "nl": "TODO"
+            "nl": "Daarnaast is de volgorde van rijen en kolommen herschikt, zodat steekproeven met ontbrekende waarden in dezelfde kolommen zijn gegroepeerd. Op dezelfde manier zijn kolommen met ontbrekende waarden in dezelfde steekproeven gegroepeerd."
         },
         {
-            "en": "TODO",
+            "en": "Here you can view the taxa and their metadata",
             "es": "Esta vista te permite explorar las taxa y su metadata.",
             "nl": "TODO"
         },
         {
-            "en": "TODO",
+            "en": "In this view you can explore the abundance of each taxa in each sample",
             "es": "Esta vista te permite explorar la abundancia de cada taxón en cada muestra.",
-            "nl": "TODO"
+            "nl": "In dit venster kan je de aanwezigheid van specifieke taxa in elk staal visualizeren"
         },
         {
             "en": "Profiles",

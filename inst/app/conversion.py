@@ -6,9 +6,12 @@ def excel_to_json(filepath):
     df = df.fillna("TODO")
     outf =  "/".join(filepath.split(".")[:-1]) + ".json"
     translations = df.to_dict(orient="records")
-
+    lang = df.columns.to_list()
+    lang.pop("es")
+    # needs to be first! 
+    lang.insert(0, "es")
     data = dict(
-        languages = df.columns.to_list(),
+        languages = lang,
         translation = translations
     )
     with open(outf, "w", encoding="utf-8") as f:
